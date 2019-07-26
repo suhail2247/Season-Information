@@ -1,14 +1,32 @@
-import React from 'react';
+import React,{Component} from 'react';
 import ReactDom from 'react-dom';
-const App=()=>{
-    //on success run first function otherwise second function
-    window.navigator.geolocation.getCurrentPosition((position)=>{console.log(position)}
-    ,(error)=>{console.log(position)}
-    );
+import DisplaySeason from './SeasonDisplay';
+
+
+class App extends Component{
+    state={
+        latitude:null,
+        err:null
+    }
+    componentDidMount(){//run only once after the render function
+        window.navigator.geolocation.getCurrentPosition(
+            (position)=> {this.setState(
+                {latitude:position.coords.latitude})},
+                (error)=>{this.setState({err: error.message})}
+          );
+    }
+    Condtitional=()=>{
+        if(this.state.err) return <div>Error: {this.state.err}</div>
+        else if(this.state.latitude)return <div><DisplaySeason latitude = {this.state.latitude}/></div>
+        else return <div>Loading</div>
+    }
+render(){
     return (
-    <div>
-        Hii There
-    </div>
+        <div>
+        {this.Condtitional()}
+        </div>
     );
+    
 }
-ReactDom(<App/>,document.getElementById('root'));
+}
+ReactDom.render(<App/>,document.getElementById('root'));

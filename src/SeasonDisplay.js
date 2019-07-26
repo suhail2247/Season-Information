@@ -1,5 +1,7 @@
 import React from 'react';
-const DisplaySeason=()=>{
-    return <div>Hii There</div>
+
+const DisplaySeason=(props)=>{
+    return <div>{props.latitude}</div>
 }
+
 export default DisplaySeason;
