@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import ReactDom from 'react-dom';
 import DisplaySeason from './SeasonDisplay';
-
+import ErrorDisplay from './ErrorDisplay';
 
 class App extends Component{
     state={
@@ -16,7 +16,7 @@ class App extends Component{
           );
     }
     Condtitional=()=>{
-        if(this.state.err) return <div>Error: {this.state.err}</div>
+        if(this.state.err) return <div><ErrorDisplay err={this.state.err}/></div>
         else if(this.state.latitude)return <div><DisplaySeason latitude = {this.state.latitude}/></div>
         else return (
             <div>

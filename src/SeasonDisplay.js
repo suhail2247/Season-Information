@@ -24,7 +24,7 @@ const Season=(latitude,month)=>{
 }
 const DisplaySeason=(props)=>{
     const season = Season(props.latitude,new Date().getMonth());
-    const text = season === "Winter"?"It's Chilly Cold":"Let's Hit The Beach";
+    const text = season === "Winter"?"Chilly Cold Because Its Winter":"Let's Hit The Beach Because It's Summer";
     const seasonIcon = season === "Winter"?"snowflake":"sun";
     return( 
         <div className={`main-div ${season}`}>
