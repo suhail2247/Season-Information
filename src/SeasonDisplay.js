@@ -1,8 +1,8 @@
 import React from 'react';
-
+import './SeasonDisplay.css'
 const Season=(latitude,month)=>{
     if(month>2 && month<9){
-        if(lat>0){
+        if(latitude>0){
             //notheren hamisphere
             return "Summer"
         }
@@ -12,7 +12,7 @@ const Season=(latitude,month)=>{
         }
     }
     else{
-        if(lat>0){
+        if(latitude>0){
             //notheren hamisphere
             return "Winter"
         }
@@ -23,9 +23,16 @@ const Season=(latitude,month)=>{
     }
 }
 const DisplaySeason=(props)=>{
-    const seson=Season(props.latitude,new Date().getMonth());
-    const text = season === "Winter"?"It's To Cold":"It's To Hot";
-    return <div>{text}</div>
+    const season = Season(props.latitude,new Date().getMonth());
+    const text = season === "Winter"?"It's Chilly Cold":"Let's Hit The Beach";
+    const seasonIcon = season === "Winter"?"snowflake":"sun";
+    return( 
+        <div className={`main-div ${season}`}>
+            <i className={`${seasonIcon} loading massive icon left-icon`}></i>
+            <h1>{text}</h1>
+            <i className={`${seasonIcon} loading massive icon right-icon`}></i>
+        </div>
+    );
 }
 
 export default DisplaySeason;
